@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+
+int main() {
+
+	int j = 0;
+
+	pid_t pid;
+
+	do {
+		printf("0 dan büyük bir sayi gir:");
+		scanf("%d", &j);
+	} while (j <= 0)
+		pid = fork();
+
+	if (pid==0)
+
+	{
+		printf("çocuk iþlemi calisiyor...\n");
+		printf("%d\n", j);
+		while (j!=1)
+		{
+			if (j % 2 == 0)
+			{
+				j = j / 2;
+			}
+			else if (j % 2 == 1)
+			{
+				j = 3 * (j)+1;
+			}
+			printf("%d\n", j);
+		}
+		printf("çocuk iþlemi yapýlýyor");
+	}
+	else
+	{
+		printf("çocuk bekleniyor\n");
+		wait();
+		printf("anne iþlemleri yapýlýyor");
+	}
+	return 0;
+}
